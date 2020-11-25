@@ -19,10 +19,15 @@ while adding_race_times == True:
             process_times(race_times, race_gender)
             break;
     else:
-        while float(temp_race_time) <= 0:
-            temp_race_time = input("Time of the athlete on lane " + str(lane_number) + " ,(X: to stop): ")
-        race_times.append([lane_number, round(float(temp_race_time), 2)])
-        lane_number += 1
+        if temp_race_time.replace('.','',1).isdigit():
+            while float(temp_race_time) <= 0:
+                temp_race_time = input("Time of the athlete on lane " + str(lane_number) + " ,(X: to stop): ")
+            race_times.append([lane_number, round(float(temp_race_time), 2)])
+            lane_number += 1
+        else:
+            print("Invalid input")
+
+        
 
 
 
