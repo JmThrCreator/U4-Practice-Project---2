@@ -1,8 +1,9 @@
 BEGIN
 from processing import process_times
-race_gender <- input("Are the athlets competing Male OR Female (M/F): ").upper()
+race_gender <- input("Are the athletes competing Male OR Female (M/F): ").upper()
 while race_gender not in ('M', 'F') THEN
-    race_gender <- input("Are the athlets competing Male OR Female (M/F): ").upper()
+    OUTPUT "Invalid input, please enter M or F"
+    race_gender <- input("Are the athletes competing Male OR Female (M/F): ").upper()
 ENDWHILE
 adding_race_times <- True
 lane_number <- 1

@@ -1,7 +1,7 @@
 BEING
 from recordtime import recordtimes
 FUNCTION process_times(race_times_list, race_gender) THEN
-    race_times_list.sort(key=lambda x:x[1], reverse=True)
+    race_times_list.sort(key=lambda x:x[1], reverse=False)
     for i in race_times_list THEN
         OUTPUT "Lane " + str(i[0]) + ": " + str(i[1])
     ENDFOR
@@ -15,22 +15,19 @@ FUNCTION process_times(race_times_list, race_gender) THEN
     
     ELSE:
         OUTPUT "------------------------------"
-        for times in race_times_list THEN
+
             IF race_gender = "F" THEN
                 for record_name, record_time in recordtimes.womens_record_times.items() THEN
                     IF times[1] < record_time THEN
-                        OUTPUT record_name+" beaten at " + str(times[1]) + " in lane " + str(times[0])
+                        OUTPUT record_name+" beaten at " + str(race_times_list[0][1]) + " in lane " + str(race_times_list[0][0])
                     ENDIF
                 ENDFOR
             ELSEIF race_gender = "M" THEN
                 for record_name, record_time in recordtimes.mens_record_times.items() THEN
                     IF times[1] < record_time THEN
-                        OUTPUT record_name+" beaten at " + str(times[1]) + " in lane " + str(times[0])
+                        OUTPUT record_name+" beaten at " + str(race_times_list[0][1]) + " in lane " + str(race_times_list[0][0])
                     ENDIF
                 ENDFOR
-            ENDIF
-                    
-        ENDFOR
-                
+            ENDIF   
         OUTPUT "------------------------------"
 END
