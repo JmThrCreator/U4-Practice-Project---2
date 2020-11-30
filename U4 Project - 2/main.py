@@ -1,9 +1,10 @@
 from processing import process_times
 
 
-race_gender = input("Are the athlets competing Male or Female (M/F): ").upper()
+race_gender = input("Are the athletes competing Male or Female (M/F): ").upper()
 while race_gender not in ('M', 'F'):
-    race_gender = input("Are the athlets competing Male or Female (M/F): ").upper()
+    print("Invalid input, please enter M or F")
+    race_gender = input("Are the athletes competing Male or Female (M/F): ").upper()
  
 
 adding_race_times = True
