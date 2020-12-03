@@ -1,0 +1,79 @@
+BEGIN
+
+  FUNCTION get_gender()
+    repeat = True
+    WHILE repeat == True DO
+      OUTPUT ("Are the athletes competing Male OR Female (M/F): ")
+      INPUT gender
+      IF gender as uppercase == 'M' THEN
+        record_times = {"World Record Time": 9.58, "European Record Time": 9.86, "British Record Time": 9.87}
+        repeat = False
+      ELIF gender as uppercase == 'F' THEN
+        record_times = {"World Record Time": 10.49, "European Record Time": 10.73, "British Record Time": 10.99}
+        repeat = False
+      ELSE
+        OUTPUT("Invalid input, please enter M or F")
+      ENDIF
+    ENDWHILE
+    return gender
+  ENDFUNCTION
+
+  
+  gender = CALL FUNCTION get_gender
+  adding_race_times = True
+  lane_number = 1
+  race_times = []
+
+  WHILE adding_race_times = True DO
+    OUTPUT ("Time of the athlete on lane" lane_number "(X: to stop): ")
+    INPUT temp_race_time
+    IF temp_race_time as uppercase = "X" THEN
+      IF len(race_times) = 0 THEN
+        OUTPUT "No times where added at all"
+      ENDIF
+      adding_race_times = False
+    ELSE
+      IF temp_race_time is a number THEN
+        CONVERT temp_race_time to float
+        IF float(temp_race_time) <= 0 THEN
+          OUTPUT ("Cannot accept values 0 or under")
+        ELSE:
+          ROUND temp_race_times to 2 decimal places
+          APPEND (lane_number, temp_race_time) to race_times
+          lane_number += 1
+        ENDIF
+      ELSE:
+        OUTPUT "Invalid input - please enter a number"
+      ENDIF
+    ENDIF
+  ENDWHILE
+
+  IF length of race_times >= 1 THEN
+    CALL FUNCTION process_times(race_times_list, gender)
+  ENDIF
+
+  FUNCTION process_times(race_times_list, gender)
+    min_athletes = 4
+    max_athletes = 8
+
+    SORT race_times_list by temp_race_time largest to smallest
+
+    FOR lane_list in race_times_list DO
+      OUTPUT "Lane" lane_list[0] ": " lane_list[1]
+    ENDFOR
+
+    IF length of race_times_list < min_athletes THEN
+      OUTPUT "The amount of athletes is too small to qualify"  
+    ELSE IF length of race_times_list > max_athletes THEN
+      OUTPUT "The amount of athletes is too large to qualify"
+    ELSE
+      OUTPUT "------------------------------"
+        FOR record_name, record_time in length of record_times DO
+          IF race_times[0][1] < record_times[count] THEN
+            OUTPUT (record_name " beaten at " race_times_list[0][1] " in lane " race_times_list[0][0]) 
+          ENDIF
+        ENDFOR
+      OUTPUT "------------------------------"
+    ENDIF
+  ENDFUNCTION 
+END
