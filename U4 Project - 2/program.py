@@ -3,7 +3,7 @@ def get_gender():
     while repeat == True:
         #asks the user to enter the gender
         race_gender = input("Are the athletes competing Male or Female (M/F): ").upper()
-        #if male, it sets men's record times and exists the loop
+        #if male, it sets men's record times and exits the loop
         if race_gender == 'M':
             record_times = {"World Record Time": 9.58, "European Record Time": 9.86, "British Record Time": 9.87}
             repeat = False
