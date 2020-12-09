@@ -64,7 +64,7 @@ BEGIN
 
     IF length of race_times_list < min_athletes THEN
       OUTPUT "The amount of athletes is too small to qualify"  
-    ELSE IF length of race_times_list > max_athletes THEN
+    ELIF length of race_times_list > max_athletes THEN
       OUTPUT "The amount of athletes is too large to qualify"
     ELSE
       OUTPUT "------------------------------"
