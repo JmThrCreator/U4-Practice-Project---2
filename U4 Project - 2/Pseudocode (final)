@@ -49,28 +49,28 @@ BEGIN
   ENDWHILE
 
   IF length of race_times >= 1 THEN
-    CALL FUNCTION process_times(race_times_list, record_times)
+    CALL FUNCTION process_times(race_times, record_times)
   ENDIF
 
-  FUNCTION process_times(race_times_list, record_times)
+  FUNCTION process_times(race_times, record_times)
     min_athletes = 4
     max_athletes = 8
 
-    SORT race_times_list by temp_race_time largest to smallest
+    SORT race_times by temp_race_time largest to smallest
 
-    FOR lane_list in race_times_list DO
+    FOR lane_list in race_times DO
       OUTPUT "Lane" lane_list[0] ": " lane_list[1]
     ENDFOR
 
-    IF length of race_times_list < min_athletes THEN
+    IF length of race_times < min_athletes THEN
       OUTPUT "The amount of athletes is too small to qualify"  
-    ELIF length of race_times_list > max_athletes THEN
+    ELIF length of race_times > max_athletes THEN
       OUTPUT "The amount of athletes is too large to qualify"
     ELSE
       OUTPUT "------------------------------"
         FOR record_name, record_time in length of record_times DO
           IF race_times[0][1] < record_times[count] THEN
-            OUTPUT (record_name " beaten at " race_times_list[0][1] " in lane " race_times_list[0][0]) 
+            OUTPUT (record_name " beaten at " race_times[0][1] " in lane " race_times[0][0]) 
           ENDIF
         ENDFOR
       OUTPUT "------------------------------"
