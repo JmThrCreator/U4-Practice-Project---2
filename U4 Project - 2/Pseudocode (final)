@@ -19,7 +19,7 @@ BEGIN
   ENDFUNCTION
 
   
-  gender = CALL FUNCTION get_gender
+  record_times = CALL FUNCTION get_gender
   adding_race_times = True
   lane_number = 1
   race_times = []
