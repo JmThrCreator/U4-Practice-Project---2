@@ -49,10 +49,10 @@ BEGIN
   ENDWHILE
 
   IF length of race_times >= 1 THEN
-    CALL FUNCTION process_times(race_times_list, gender)
+    CALL FUNCTION process_times(race_times_list, record_times)
   ENDIF
 
-  FUNCTION process_times(race_times_list, gender)
+  FUNCTION process_times(race_times_list, record_times)
     min_athletes = 4
     max_athletes = 8
 
