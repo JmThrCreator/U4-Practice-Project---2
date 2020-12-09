@@ -15,7 +15,7 @@ BEGIN
         OUTPUT("Invalid input, please enter M or F")
       ENDIF
     ENDWHILE
-    return gender
+    return record_times
   ENDFUNCTION
 
   
