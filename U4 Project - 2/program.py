@@ -35,7 +35,7 @@ while adding_race_times == True:
 
 def process_times(race_times, record_times):
     min_athletes = 4
-    max_athletes = 10
+    max_athletes = 8
 
     race_times.sort(key=lambda x:x[1], reverse=False)
 
